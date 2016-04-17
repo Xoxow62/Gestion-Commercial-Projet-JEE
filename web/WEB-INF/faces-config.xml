@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<faces-config version="2.0"
+    xmlns="http://java.sun.com/xml/ns/javaee" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd">
+
+    <application>
+        
+        <resource-bundle> 
+         <base-name>web.messageslocalises.messages</base-name>
+         <var>msgs</var>
+        </resource-bundle>
+        
+        <locale-config>
+            <default-locale>fr</default-locale>
+            <supported-locale>en</supported-locale> 
+        </locale-config>    
+            
+    </application>
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>crudclients</from-outcome>
+            <to-view-id>/WEB-PAGES/pages/crudclients.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>commandesparclients</from-outcome>
+            <to-view-id>/WEB-PAGES/pages/commandesparclients.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>stats</from-outcome> 
+            <to-view-id>/WEB-PAGES/pages/statscaparregions.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>index</from-outcome> 
+            <to-view-id>/WEB-PAGES/pages/index.xhtml</to-view-id>
+        </navigation-case>
+              <navigation-case>
+            <from-outcome>statsCategProd</from-outcome> 
+            <to-view-id>/WEB-PAGES/pages/statscacategprod.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>commandesparnumero</from-outcome> 
+            <to-view-id>/WEB-PAGES/pages/pageCommande.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+   
+</faces-config>
+
+
+

@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:head>
+        <h:outputStylesheet library="/resources/css" name="stylesMenu_1.css"/>     
+    </h:head>
+    
+    <h:body>
+        
+        <ui:composition template="/WEB-PAGES/masters/master.xhtml" 
+                        rendererType="#{controleurSession.connexionOK}">
+            
+          <ui:define name="panneauNord" rendered="#{controleurSession.connexionOK}">               
+             <ui:include  src="/WEB-PAGES/panneaux/nord_TitreCommandesParClients.xhtml"/>   
+          </ui:define> 
+            
+          <ui:define name="panneauCentral" rendered="#{controleurSession.connexionOK}" >
+            
+            <ui:include src="/WEB-PAGES/panneaux/centre_CommandesParClientsCombo.xhtml" /> 
+             
+            <!--
+
+            <ui:include src="/WEB-PAGES/panneaux/centre_CommandesParClientsSaisie.xhtml"/> 
+            
+            -->  
+
+            </ui:define> 
+     
+        </ui:composition>
+    </h:body>
+</html>
+

@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+    
+ <h:head>
+    <h:outputStylesheet library="css" name="stylesExo2.css"/> 
+    <title>Récapitulatif Commandes par clients</title>
+ </h:head>
+    
+ <h:body>    
+   <f:view locale="fr">  
+    
+    <h:form id="formulaireExo1" styleClass="formulaire">
+        
+     <p:messages id="messages"    showDetail="true"  
+                 closable="true"  showSummary="false"/>
+        
+     <p:panelGrid styleClass="saisieNumcli" columns="3"  >
+                
+       <p:outputLabel value="#{msgs.saisieC}" for="numcli"  />
+       <p:inputText   id="numcli"  value="#{contExo1.numcliRecherche}"
+                      title="#{msgs.bulleSaisieC}" styleClass="champSaisieNumCli"
+                      required="true"  
+       />    
+            
+       <p:commandButton value="OK" 
+                        update=":formulaireExo1:PanneauInfosClients :formulaireExo1:messages"  
+                        action="#{contExo1.ecouteurRecherche}"
+                        styleClass="bouton"                                    
+       />
+           
+     </p:panelGrid>
+            
+     <p:separator  styleClass="separateur"/>
+           
+     <p:panel   id="PanneauInfosClients" 
+                header="#{msgs.infoC} #{contExo1.client.nomCli}" 
+                styleClass="infosClient"                  
+                toggleable="true"  collapsed="false" 
+                closeSpeed="500"   toggleTitle="Réduire">
+            
+          <p:ajax event="toggle"   update="@this"/>
+             
+          <h:outputText value="#{contExo1.client.nomCli}" /> 
+          <br/>
+          <h:outputText value="#{contExo1.client.adrCli}" />  
+          <br/>
+          <h:outputText value="#{contExo1.client.laRegion.nomRegion}" />
+      
+     </p:panel>
+            
+    </h:form>
+   
+   </f:view>  
+  </h:body>
+</html>
+

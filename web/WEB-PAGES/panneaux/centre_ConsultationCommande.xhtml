@@ -1,0 +1,153 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>Consultation Commande</title>
+        <h:outputStylesheet library="css" name="stylesMenu.css"/>
+    </h:head>
+    <h:body>
+
+        <ui:composition transient="true">
+
+            <h:form id="recapCom" styleClass="formulaire">
+
+                <f:view>
+
+                    <h:panelGrid styleClass="saisieNumCom" columns="3">
+
+                        <p:outputLabel value="N° Commande" for="numCom"/>
+                        <p:keyboard id="numCom" value="#{controleurNumCommande.numCommande}"
+ 
+                                    title="Saisir un N° de commande" styleClass="champSaisieNumCom"
+                                    required="true"  
+                                    validatorMessage="Veuillez saisir un numéro de commande! "
+                                    keypadOnly="true" >
+
+
+
+                        </p:keyboard>  
+
+                        <p:commandButton value="OK"  update="@all"
+                                         action="#{controleurNumCommande.recherche()}"
+                                         immediate="false"
+
+                                         styleClass="bouton"/>
+                    </h:panelGrid>
+
+                    <p:panel style=" width: 1200px; border-style:  none;"  >
+                        <p:messages id="messages"  showDetail="true"  autoUpdate="true" closable="true"/>
+                    </p:panel>
+
+                    <h:panelGrid columns="2">
+
+
+                        <p:outputLabel value="Date commande: "/>
+                        <h:outputText value="#{controleurNumCommande.commande.dateCom}"  >
+                            <f:convertDateTime pattern="dd/MM/yyyy"  timeZone="Europe/Paris"/>
+                        </h:outputText>
+
+                        <p:outputLabel value="Etat commande: "/>
+                        <h:outputText value="#{controleurNumCommande.commande.etatCom}"/>
+
+
+                    </h:panelGrid>
+
+                    <p:panel  header="Consultation de la commande #{controleurNumCommande.commande.numCom}" styleClass="infosCommande"
+                              toggleable="true"   collapsed="false"
+                              closeSpeed="1500"   toggleTitle="Réduire" >
+
+                        <p:ajax event="toggle"   update="@all"/>
+
+                        <h:panelGrid styleClass="saisieNumComm" columns="2" >
+
+                            <p:outputLabel value="N° Client: "/>
+                            <h:outputText value="#{controleurNumCommande.commande.leClient.nomCli}" />
+
+                            <p:outputLabel value="Nom Client: "/>
+                            <h:outputText value="#{controleurNumCommande.commande.leClient.numCli}" />
+
+                            <p:outputLabel value="Adresse client: "/>
+                            <h:outputText value="#{controleurNumCommande.commande.leClient.adrCli}" />
+
+                            <p:outputLabel value="Région: "/>
+                            <h:outputLabel value="#{controleurNumCommande.commande.leClient.laRegion.nomRegion}" />
+
+                            <p:outputLabel value="CA Année en cours:   "/>
+                            <h:outputLabel value="#{controleurNumCommande.caClientAnneeEnCours}" />
+
+
+                        </h:panelGrid>
+
+                    </p:panel>
+
+
+
+
+                    <p:dataTable value="#{controleurNumCommande.commande.lesLignesDeCommande}" var="ldc" 
+                                 styleClass="tableau"
+                                 paginator="true" rows="6"
+                                 paginatorTemplate="{FirstPageLink} {PreviousPageLink}
+                                 {NextPageLink} {PageLinks} {LastPageLink}"
+
+                                 emptyMessage="#{contExo3c.messageTableau}" >
+
+                        <f:facet name="header">  
+                            Liste des Commandes  de #{controleurNumCommande.commande.leClient.nomCli}
+                        </f:facet> 
+
+                        <p:column headerText="Numéro produit:">
+                            <h:outputText value="#{ldc.leProduit.refProd}"  >
+                            </h:outputText>        
+                        </p:column>
+
+                        <p:column headerText="Designation :">
+                            <h:outputText value="#{ldc.leProduit.desigProd}"  >
+                            </h:outputText>        
+                        </p:column>
+
+
+                        <p:column headerText="Quantité :">
+                            <h:outputText value="#{ldc.qteCom}"  >
+                            </h:outputText>        
+                        </p:column>
+                        
+                        <p:column headerText="Prix Unitaire :">
+                            <h:outputText value="#{controleurNumCommande.prixU(ldc)}"  >
+                            </h:outputText>        
+                        </p:column>
+
+
+                      <p:column headerText="Montant TTC :">
+                          <h:outputText value="#{controleurNumCommande.montantHT(ldc)}"  >
+                                <f:convertNumber type="currency" currencySymbol="€" minFractionDigits="2" groupingUsed="true" ></f:convertNumber>
+                            </h:outputText>        
+                        </p:column>
+                        <p:column headerText="Taux TVA  :">
+                            <h:outputText value="#{ldc.leProduit.laCategorie.tauxTVA}"  >
+                                <f:convertNumber type="percent" ></f:convertNumber>
+                            </h:outputText>        
+                        </p:column>
+                        
+                 <!--       <p:column headerText="Montant TTC :"  styleClass="qteDebutTranche">
+                            <h:outputText value="{controleurNumCommande.montantTTC(ldc)}"  >
+                                <f:convertNumber type="currency" currencySymbol="€" minFractionDigits="2" groupingUsed="true" ></f:convertNumber>
+                            </h:outputText>        
+                            </p:column>
+                 -->
+
+                    </p:dataTable> 
+
+
+
+                </f:view>
+
+            </h:form>
+
+        </ui:composition>
+
+    </h:body>
+</html>

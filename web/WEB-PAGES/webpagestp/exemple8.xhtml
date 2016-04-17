@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>Mise A Jour Clients</title>
+    </h:head>
+<h:body>
+        
+<h:form  id="formulaireExo6"> 
+     
+  
+      
+  <p:panel id="infosclientPourCrud"      
+           styleClass="infosClient" 
+           toggleable="true"   collapsed="false" 
+           closeSpeed="1500"   toggleTitle="Réduire" 
+  >  
+   <f:facet name="header" >
+            Ajout  
+   </f:facet>
+     
+   <p:panelGrid id="pg" columns="2"   styleClass="panelGrid" columnClasses="colGrid1, colGrid2"  >
+       
+      <p:outputLabel value="Numero"/> 
+      <h:inputText value="#{contExo8.client.numCli}" />
+       
+      <p:outputLabel value="Nom"/> 
+      <h:inputText value="#{contExo8.client.nomCli}" />
+         
+      <p:outputLabel value="Adresse" for="adressecli"/>
+      <h:inputText id="adressecli" value="#{contExo8.client.adrCli}" />
+         
+         
+      <p:outputLabel   value="Région" for="region"/>
+      <p:selectOneMenu id="region"   value="#{contExo8.client.laRegion}"  
+                       filter="true" filterMatchMode="startsWith" 
+                       
+      >   
+        <f:selectItems value="#{contExo8.lesRegions}"  
+                       var="reg"   
+                       itemLabel="#{reg.nomRegion}"  
+        />     
+        <p:ajax event="change" />
+      </p:selectOneMenu>
+
+    </p:panelGrid>   
+  </p:panel>
+     
+  <p:commandButton value="Enregistrer dans la Base"  
+                   actionListener="#{contExo8.ajoutAlaBase()}"
+                   
+  />
+      
+ </h:form>
+        
+ </h:body>
+</html>
+

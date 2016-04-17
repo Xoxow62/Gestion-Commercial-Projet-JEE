@@ -1,0 +1,52 @@
+<ui:composition
+   xmlns="http://www.w3.org/1999/xhtml"
+   xmlns:h="http://java.sun.com/jsf/html"
+   xmlns:ui="http://java.sun.com/jsf/facelets"
+   xmlns:p="http://primefaces.org/ui"
+   xmlns:f="http://java.sun.com/jsf/core"           
+>
+     
+ <p:dataTable 
+   id="tableaucommandes"
+   value="#{controleurExo4.client.lesCommandes}" var="cmd"  rowIndexVar="rang"
+   selectionMode="single" rowKey="#{cmd.numCom}" selection="#{controleurExo4.commandeSel}"
+   styleClass="tableau" rowStyleClass="#{(rang mod 2) eq 0 ? 'rowPair' : 'rowImpair'}"
+   paginator="true" rows="3"
+   paginatorTemplate="{FirstPageLink} {PreviousPageLink} {NextPageLink} {PageLinks} {LastPageLink}"
+   paginatorPosition="bottom"                  
+   emptyMessage="#{controleurExo4.messageTableau}" 
+ >
+   <p:ajax  event="rowSelect" listener="#{controleurExo4.afficherCommande}"  
+            update="@form"/> 
+      
+   <f:facet name="header" >Liste des Commandes  de #{controleurExo4.client.nomCli} </f:facet> 
+                
+   <p:column  headerText="numéro"  styleClass="colNumCom">#{cmd.numCom} </p:column>
+                
+   <p:column headerText="Date de commande"  styleClass="colDateCom">                   
+     <h:outputText value="#{cmd.dateCom}"  >
+       <f:convertDateTime pattern="dd/MM/yyyy"  timeZone="Europe/Paris"/>
+     </h:outputText>               
+   </p:column>
+            
+   <p:column headerText="Montant HT"  styleClass="colMntHT">               
+     <h:outputText value="#{controleurExo4.montantCommandeHt(cmd)}"  >
+       <f:convertNumber type="currency" currencySymbol="€" groupingUsed="true" minFractionDigits="2"/>
+     </h:outputText>             
+   </p:column>
+                
+   <p:column headerText="Montant TTC"  styleClass="colMntTTC">            
+     <h:outputText value="#{controleurExo4.balCommande.montantCommandeTTC(cmd)}"  >
+       <f:convertNumber type="currency" currencySymbol="€" groupingUsed="true" minFractionDigits="2"/>
+     </h:outputText>                
+   </p:column>                
+   <p:column headerText="statut" styleClass="colStatutCom">#{cmd.etatCom}</p:column>       
+  
+ </p:dataTable> 
+     
+    <p:growl id="affComm"  showDetail="true" sticky="false" life="3000"/>
+
+</ui:composition>
+
+
+   

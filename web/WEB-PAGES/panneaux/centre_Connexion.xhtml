@@ -1,0 +1,27 @@
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      
+      xmlns:p="http://primefaces.org/ui">
+    
+  <h:form>
+      
+      <h:panelGrid  columns="3">
+        
+        <p:outputLabel value="Nom" for="nom"/>
+        <h:inputText id="nom" value="#{controleurSession.nomUser}" required="true"/>
+        <p:message for="nom" />
+        
+        <p:outputLabel value="Mot de Passe" for="mdp"/>
+        <h:inputSecret id="mdp" value="#{controleurSession.mdp}" required="true"/>
+        <p:message for="mdp"/>
+        
+        <h:commandButton value="OK"   action="#{controleurSession.sIdentifier()}" />
+         
+      </h:panelGrid> 
+        
+  </h:form>    
+
+</ui:composition>
+    

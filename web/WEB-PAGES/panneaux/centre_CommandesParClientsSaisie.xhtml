@@ -1,0 +1,113 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:head>
+        <title>Recapitultif commandes par clients</title>
+        <h:outputStylesheet library="css" name="stylesMenu.css"/> 
+    </h:head>
+    <h:body>
+       
+      <ui:composition  transient="true">
+        
+            <h:form id="recapComCli" styleClass="formulaire">
+         
+            <f:view>  
+                <h:panelGrid styleClass="saisieNumcli" columns="4" >
+                 
+                  <p:outputLabel value="N° du Client:" for="numcli"  />
+                  
+                  <p:keyboard id="numcli" value="#{controleurExo2.numcliRecherche}"
+                             
+                               title="Saisir un N° de client" styleClass="champSaisieNumCli"
+                               required="true"   
+                               validatorMessage="Veuillez saisir un numéro de client! " 
+                               keypadOnly="true"
+                  > 
+                      
+                  <f:event type="preValidate" listener="#{controleurExo2.prevalide(null)}" />   
+                  
+                  </p:keyboard>   
+                               
+                 <p:commandButton value="OK"  update="@all" 
+                                  action="#{controleurExo2.ecouteurRecherche}"
+                                  immediate="false"
+                                  
+                                  styleClass="bouton"                                    
+                 />
+                 
+                 <p:panel style=" width: 700px; border-style:  none;"  >
+                     <p:messages id="messages"  showDetail="true"  autoUpdate="true" closable="true"/>
+                 </p:panel>
+                
+                </h:panelGrid>
+            
+            
+            <p:separator  styleClass="separateur"/>
+            
+            
+            <p:panel  header="Informations du client #{controleurExo2.client.nomCli}" styleClass="infosClient" 
+                      toggleable="true"   collapsed="false" 
+                      closeSpeed="1500"   toggleTitle="Réduire" >
+            
+                 <p:ajax event="toggle"   update="@all"/>
+             
+                 <h:panelGrid styleClass="saisieNumcli" columns="1" >
+                 
+                     <h:outputText value="#{controleurExo2.client.nomCli}" />
+                     <h:outputText value="#{controleurExo2.client.adrCli}" />
+                     <h:outputText value="#{controleurExo2.client.laRegion.nomRegion}" />
+            
+                 </h:panelGrid>
+             
+            </p:panel>
+            
+            <p:separator styleClass="separateur"/> 
+           
+            <p:dataTable value="#{controleurExo2.listeCommandes}" var="cmd"  rowIndexVar="rang"
+                         styleClass="tableau" 
+                         rowStyleClass="#{(rang mod 2) eq 0 ? 'rowPair' : 'rowImpair' }"
+                         paginator="true" rows="4"
+                         paginatorTemplate="{FirstPageLink} {PreviousPageLink}
+                         {NextPageLink} {PageLinks} {LastPageLink}"
+                         paginatorPosition="bottom"
+                         
+                         emptyMessage="#{controleurExo2.messageTableau}" >
+        
+                <f:facet name="header" >
+                    Liste des Commandes  de #{controleurExo2.client.nomCli}   
+                </f:facet> 
+                
+                <p:column  headerText="numéro"  styleClass="colNumCom">
+                 
+                  #{cmd.numCom}  
+             
+                </p:column>
+                
+                <p:column headerText="Date de commande"  styleClass="colDateCom">
+                   
+                    <h:outputText value="#{cmd.dateCom}"  >
+                      <f:convertDateTime pattern="dd/MM/yyyy"  timeZone="Europe/Paris"/>
+                    </h:outputText> 
+                     
+                </p:column>
+            
+                <p:column headerText="statut" styleClass="colStatutCom">
+                
+                
+                    #{cmd.etatCom}  
+                
+                </p:column>
+        
+        </p:dataTable> 
+      
+           </f:view>  
+        
+           </h:form>   
+        </ui:composition>      
+    </h:body>
+</html>
+

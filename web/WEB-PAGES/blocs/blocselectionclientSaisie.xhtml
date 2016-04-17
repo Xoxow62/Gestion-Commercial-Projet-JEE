@@ -1,0 +1,36 @@
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+>
+   
+   
+ <h:panelGrid styleClass="saisieNumcli" columns="4" >
+                 
+    <p:outputLabel value="N° du Client:" for="numcli"  />
+                  
+      <p:keyboard id="numcli" value="#{controleurExo2.numcliRecherche}"
+                             
+                               title="Saisir un N° de client" styleClass="champSaisieNumCli"
+                               required="true"   
+                               validatorMessage="Veuillez saisir un numéro de client! " 
+                               keypadOnly="true"
+      > 
+                       
+         <f:event type="preValidate" listener="#{controleurExo2.prevalide(null)}" />   
+                  
+      </p:keyboard>   
+                               
+      <p:commandButton value="OK"  update="@all" 
+                       action="#{controleurExo2.ecouteurRecherche}"           
+                       styleClass="bouton"                                    
+      />
+                 
+      <p:panel style=" width: 700px; border-style:  none;"  >
+          <p:messages id="messages"  showDetail="true"  
+                      autoUpdate="true" closable="true"/>
+      </p:panel>
+                
+ </h:panelGrid>
+                         
+</ui:composition>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene Scope="Project" version="2">
+    <Scope Scope="Faces Configuration Only"/>
+    <Scope Scope="Project">
+        <Node id="WEB-PAGES/blocs/blocselectionclient.xhtml" x="7264" y="32" zoom="true"/>
+        <Node id="WEB-PAGES/pages/statscaparregions.xhtml" x="654" y="437" zoom="true"/>
+        <Node id="WEB-PAGES/panneaux/nord_TitreStatsCaParRegions.xhtml" x="6727" y="32" zoom="true"/>
+        <Node id="WEB-PAGES/panneaux/nord_TitreCommandesParClients.xhtml" x="5578" y="32" zoom="true"/>
+        <Node id="WEB-PAGES/panneaux/ouest_Menu.xhtml" x="602" y="139" zoom="false"/>
+        <Node id="WEB-PAGES/masters/master.xhtml" x="4118" y="32" zoom="true"/>
+        <Node id="WEB-PAGES/pages/commandesparclients.xhtml" x="377" y="247" zoom="true"/>
+        <Node id="WEB-PAGES/blocs/blocselectionclientSaisie.xhtml" x="150" y="150" zoom="true"/>
+        <Node id="WEB-PAGES/pages/crudclient.xhtml" x="150" y="300" zoom="true"/>
+        <Node id="WEB-PAGES/blocs/bloctableaucommandes.xhtml" x="2237" y="32" zoom="true"/>
+        <Node id="WEB-PAGES/panneaux/centre_StatsCaParRegions.xhtml" x="3601" y="32" zoom="true"/>
+        <Node id="WEB-PAGES/panneaux/sud_vide.xhtml" x="7710" y="32" zoom="true"/>
+        <Node id="WEB-PAGES/pages/index.xhtml" x="635" y="28" zoom="true"/>
+        <Node id="WEB-PAGES/panneaux/centre_CommandesParClientsSaisie.xhtml" x="400" y="300" zoom="true"/>
+        <Node id="WEB-PAGES/pages/crudclients.xhtml" x="900" y="150" zoom="true"/>
+        <Node id="WEB-PAGES/blocs/blocinfosclient.xhtml" x="8122" y="32" zoom="true"/>
+        <Node id="WEB-PAGES/panneaux/nord_TitreConnexion.xhtml" x="979" y="336" zoom="false"/>
+        <Node id="WEB-PAGES/panneaux/nord_TitreCrudClients.xhtml" x="4508" y="32" zoom="true"/>
+        <Node id="WEB-PAGES/blocs/blocselectionclientPourCrud.xhtml" x="400" y="450" zoom="true"/>
+        <Node id="WEB-PAGES/panneaux/centre_CommandesParClientsCombo.xhtml" x="6140" y="32" zoom="true"/>
+        <Node id="WEB-PAGES/panneaux/centre_CrudClients.xhtml" x="150" y="450" zoom="true"/>
+        <Node id="WEB-PAGES/panneaux/centre_Connexion.xhtml" x="8544" y="32" zoom="true"/>
+        <Node id="WEB-PAGES/blocs/blocinfosclientPourCrud.xhtml" x="650" y="150" zoom="true"/>
+        <Node id="WEB-PAGES/panneaux/est_vide.xhtml" x="3193" y="32" zoom="true"/>
+    </Scope>
+    <Scope Scope="All Faces Configurations"/>
+</Scene>

@@ -1,0 +1,89 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>Mise A Jour Clients</title>
+    </h:head>
+<h:body>
+        
+<h:form  id="formulaireExo6"> 
+     
+  <p:selectOneListbox  id="comboCliCrud" value="#{contExo6.client}"
+              
+        style= "border-radius: 15px;width: 40%; 
+                border: solid deepskyblue;
+                background-color: silver; max-height: 75px;"
+                                        
+   >
+            
+       <f:selectItems    
+            value     = "#{contExo6.lesClients}" 
+            var       = "clt"
+            itemLabel = "#{clt.numCli}: #{clt.nomCli} "             
+       />  
+            
+       <p:ajax   event="change"
+                 update="formulaireExo6:infosclientPourCrud "
+                 listener="#{contExo6.traiterSelectionCombo}"/> 
+           
+   </p:selectOneListbox> 
+      
+  <p:panel id="infosclientPourCrud"      
+           styleClass="infosClient" 
+           toggleable="true"   collapsed="false" 
+           closeSpeed="1500"   toggleTitle="Réduire" 
+  >  
+   <f:facet name="header" >
+            Modification 
+   </f:facet>
+     
+   <p:panelGrid id="pg" columns="2"   styleClass="panelGrid" columnClasses="colGrid1, colGrid2"  >
+                   
+      <p:outputLabel value="Nom"/> 
+      <h:inputText value="#{contExo6.client.nomCli}" />
+         
+      <p:outputLabel value="Adresse" for="adressecli"/>
+      <h:inputText id="adressecli" value="#{contExo6.client.adrCli}" />
+         
+         
+      <p:outputLabel value="Région" for="region"/>
+      <p:selectOneMenu id="region" value="#{contExo6.client.laRegion}"  
+                       filter="true" filterMatchMode="startsWith" 
+                       
+      >   
+        <f:selectItems value="#{contExo6.lesRegions}"  
+                       var="reg"   
+                       itemLabel="#{reg.nomRegion}"  
+        />     
+        <p:ajax event="change" />
+      </p:selectOneMenu>
+
+    </p:panelGrid>   
+  </p:panel>
+     
+  <p:commandButton value="Enregister les modifications dans la Base"  
+                   onclick="confirmation.show()"
+                               
+  />
+  
+  <p:dialog header="Vous confirmez cette modification?"  widgetVar="confirmation" 
+            showEffect="bounce" hideEffect="explode">  
+            
+             <h:form>    
+                 <p:commandButton
+                                value="Oui"  oncomplete="confirmation.hide()"  
+                                action="#{contExo6.enregisterModifications()}"
+                                update=":formulaireExo6:comboCliCrud"
+                  />  
+                 <p:commandButton value="Non" onclick="confirmation.hide()" type="button" />   
+              </h:form>
+  </p:dialog>  
+  
+ </h:form>
+        
+ </h:body>
+</html>
+

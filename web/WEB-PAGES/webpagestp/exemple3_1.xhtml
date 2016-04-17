@@ -1,0 +1,92 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+        <h:outputStylesheet library="css" name="stylesExo2.css"/> 
+        <title>Commandes par clients</title>
+</h:head>
+    
+<h:body>
+        
+   <h:form  id="formulaireExo3" styleClass="formulaire">
+           
+       <p:messages id="messages"  showDetail="true"  showSummary="false" closable="true"/>
+           
+       <p:panelGrid styleClass="saisieNumcli" columns="3"  >
+                 
+         <p:outputLabel value="N° du Client:" for="numcli"  />
+         <p:inputText id="numcli" value="#{contExo3b.numcliRecherche}"       
+                      title="Saisir un N° de client" styleClass="champSaisieNumCli"
+                      required="true"  
+         > 
+                       
+            <f:event type="preValidate" listener="#{contExo3b.prevalide}" />    
+         </p:inputText>   
+                               
+         <p:commandButton value="OK"  update="@all" 
+                          action="#{contExo3b.ecouteurRecherche}"
+                              
+                          styleClass="bouton"                                    
+         />   
+       </p:panelGrid>
+            
+          
+       <p:separator  styleClass="separateur"/>
+            
+            
+       <p:panel  header="Informations du client #{contExo3b.client.nomCli}" styleClass="infosClient" 
+                      toggleable="true"  collapsed="false" 
+                      closeSpeed="500"   toggleTitle="Réduire">
+            
+              <p:ajax event="toggle"   update="@this"/>
+             
+              <h:outputText value="#{contExo3b.client.nomCli}" />
+            
+              <br/> 
+              <h:outputText value="#{contExo3b.client.adrCli}" />
+            
+              <br/> 
+              <h:outputText value="#{contExo3b.client.laRegion.nomRegion}" />
+      
+               <br/> 
+              <h:outputText value="#{contExo3b.caAnnuelClient}" rendered="#{contExo3b.clientExiste}">
+                <f:convertNumber type="currency" currencySymbol="€" 
+                                 groupingUsed="true" minFractionDigits="2" />
+         
+              </h:outputText> 
+        </p:panel>
+        
+        <p:separator styleClass="separateur"/> 
+             
+        <p:dataTable value="#{contExo3b.listeCommandes}" var="cmd" 
+                     styleClass="tableau"
+                     paginator="true" rows="5"
+                     paginatorTemplate="{FirstPageLink} {PreviousPageLink}
+                                        {NextPageLink} {PageLinks} {LastPageLink}"
+                         
+                     emptyMessage="#{contExo3b.messageTableau}" >
+        
+               <f:facet name="header">  
+                    Liste des Commandes  de #{contExo3b.client.nomCli}
+               </f:facet> 
+                
+               <p:column  headerText="numéro"  styleClass="colNumCom">#{cmd.numCom} </p:column>
+                
+               <p:column headerText="Date de commande"  styleClass="colDateCom">
+                 <h:outputText value="#{cmd.dateCom}"  >
+                   <f:convertDateTime pattern="dd/MM/yyyy"  timeZone="Europe/Paris"/>
+                 </h:outputText>        
+               </p:column>
+            
+               <p:column headerText="statut" styleClass="colStatutCom"> #{cmd.etatCom}</p:column>
+        
+         </p:dataTable> 
+
+   </h:form>
+   
+    </h:body>
+</html>
+

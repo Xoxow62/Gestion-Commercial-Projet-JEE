@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>Mise A Jour Clients</title>
+    </h:head>
+<h:body>
+        
+<h:form  id="formulaireExo7"> 
+     
+  <p:selectOneListbox  id="comboCliCrud" value="#{contExo7.client}"
+              
+        style= "border-radius: 15px;width: 40%; 
+                border: solid deepskyblue;
+                background-color: silver; max-height: 75px;"
+                                         
+   >
+            
+       <f:selectItems    
+            value     = "#{contExo7.lesClients}" 
+            var       = "clt"
+            itemLabel = "#{clt.numCli}: #{clt.nomCli} "             
+       />  
+           
+       <p:ajax   event="change"
+                 update="formulaireExo7:infosclientPourCrud " />
+                 
+           
+   </p:selectOneListbox> 
+      
+  <p:panel id="infosclientPourCrud"      
+           styleClass="infosClient" 
+           toggleable="true"   collapsed="false" 
+           closeSpeed="1500"   toggleTitle="Réduire" 
+  >  
+   <f:facet name="header" >
+            Suppression 
+   </f:facet>
+     
+   <p:panelGrid id="pg" columns="2"   styleClass="panelGrid" columnClasses="colGrid1, colGrid2"  >
+                   
+      <p:outputLabel value="Nom"/> 
+      <h:outputText value="#{contExo7.client.nomCli}" />
+         
+      <p:outputLabel value="Adresse" for="adressecli"/>
+      <h:outputText id="adressecli" value="#{contExo7.client.adrCli}" />
+         
+         
+      <p:outputLabel value="Région" for="regioncli"/>
+      <h:outputText id="regioncli" value="#{contExo7.client.laRegion.nomRegion}" />
+
+    </p:panelGrid>   
+  </p:panel>
+     
+  <p:commandButton value="Supprimer de la Base"                     
+                   actionListener="#{contExo7.supprimerClient()}"
+                   update="@all"
+  />
+      
+ </h:form>
+        
+ </h:body>
+</html>
+

@@ -1,0 +1,24 @@
+<ui:composition
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+>       
+        <h:form>
+            <f:view>
+                <p:panel toggleable="true" closable="true">
+                    <p:pieChart value="#{controleurStatsCaCategProd.camembert}" 
+                                legendPosition="c" 
+                                sliceMargin="7"
+                                shadow="true"
+                                showDataLabels="true"
+                     />
+                </p:panel>
+                
+            </f:view>   
+            
+        </h:form> 
+            
+</ui:composition>         
+   

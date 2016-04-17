@@ -1,0 +1,33 @@
+
+<ui:composition 
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+>
+          
+    <p:selectOneListbox  
+              
+        style= "border-radius: 15px;width: 40%; 
+                border: solid deepskyblue;
+                background-color: silver; max-height: 75px;"
+                                  
+        value="#{controleurExo4.client}"   
+    >
+            
+        <f:selectItems    
+            value="#{controleurExo4.lesClients}" 
+            var       = "clt"
+            itemLabel = "#{clt.numCli}: #{clt.nomCli} "             
+         />  
+            
+         <p:ajax   event="change"
+                          listener="#{controleurExo4.traiterSelectionCombo()}"
+                          update="infosclient tableaucommandes"                
+         /> 
+           
+     </p:selectOneListbox> 
+        
+     
+</ui:composition>   

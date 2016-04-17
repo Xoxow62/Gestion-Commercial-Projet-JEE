@@ -1,0 +1,79 @@
+
+
+.formulaire{ margin-top: 20px; margin-left: 20px; margin-right: 20px;}
+
+.choixclient{ width:100%; margin-top:5px; border-style:none;}
+
+
+.bouton{ border-radius:  15px; width: 60px; text-align:  center;}
+
+.separateur{}
+
+.comboclients{ 
+               border-radius: 15px;
+               width: 72%; height: 70%;
+               border: solid     deepskyblue; background-color: silver;          
+}
+
+.infosClient {
+           background-color:  silver;
+           border-radius: 15px;
+           width: 600px;
+           border: solid deepskyblue; 
+           column-width: 200px;    
+           margin:0px;
+          
+}
+
+.headerPanneauClient{ text-align:  center;}
+.panelGrid{
+    
+           margin-left: 0px;margin-right: 0px; 
+}
+.colGrid1{
+     width: 200px;
+     background-color:    linen;
+}
+.colGrid2{
+     width: 400px;
+     background-color:  honeydew;
+}
+
+.centre{
+           width:  60%; min-width:  60%; 
+           height: 70%; min-height: 70%; 
+           background-color:   seashell  ;
+}
+.nord{
+           height: 5%; min-height: 5%; max-height: 5%; background-color:  cornsilk;          
+}
+.sud{
+           height: 5%; min-height: 5%; max-height: 5%; background-color: cornsilk;           
+}
+.est{
+           width:  12%;  min-width: 12%; background-color: cornsilk;         
+}
+.ouest{
+           width:  15%;  min-width: 15%; background-color: cornsilk;         
+}
+
+
+.tableau {
+           background-color: silver;
+           border-radius: 10px;
+           width: 700px; height: 250px;
+           border: solid deepskyblue; 
+           text-align:  left;
+}
+
+
+
+.rowPair  {  background-color:  beige; }
+.rowImpair{  background-color: honeydew;}
+
+.colNumCom    { width: 40%; text-align:  center; }     
+.colDateCom   { width: 40%; text-align:  center; } 
+.colStatutCom { width: 20%; text-align:  center ;}
+.colMntTTC    { width: 40%; text-align:   right;}
+.colMntHT     { width: 40%; text-align:   right;}
+

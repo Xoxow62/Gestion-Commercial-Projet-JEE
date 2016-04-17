@@ -1,0 +1,53 @@
+       
+<ui:composition
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets" 
+>
+ 
+ <h:form  id="modifClient"> 
+ 
+  <p:panel id="infosclientPourCrud"      
+           styleClass="infosClient" 
+           toggleable="true"   collapsed="false" 
+           closeSpeed="1500"   toggleTitle="Réduire" 
+  >   
+   <f:facet name="header" >
+            Modification 
+   </f:facet>
+     
+   <p:panelGrid id="pg" columns="2"   styleClass="panelGrid" columnClasses="colGrid1, colGrid2"  >
+                   
+      <p:outputLabel value="Nom"/> 
+      <h:inputText value="#{controleurExo4.client.nomCli}" />
+         
+      <p:outputLabel value="Adresse" for="adressecli"/>
+      <h:inputText id="adressecli" value="#{controleurExo4.client.adrCli}" />
+               
+      <p:outputLabel value="" for="region"/>
+      <p:selectOneMenu id="region" value="#{controleurExo4.client.laRegion}"  immediate="true"
+                       filter="true" filterMatchMode="startsWith" 
+                       
+      >   
+         
+        <f:selectItems value="#{controleurExo4.lesRegions}"  
+                       var="reg"   
+                       itemLabel="#{reg.nomRegion}" itemValue="#{reg}" 
+        />     
+        <p:ajax event="change" update="@parent"/>
+      </p:selectOneMenu>
+
+    </p:panelGrid>   
+  </p:panel>
+     
+  <p:commandButton value="Enregister les modifications"  
+                       actionListener="#{controleurExo4.enregisterModifications}"
+                       update=":crudClient:comboCliCrud"
+  />
+      
+ </h:form>
+    
+</ui:composition>  
+   

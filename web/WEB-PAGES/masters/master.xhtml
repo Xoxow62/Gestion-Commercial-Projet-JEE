@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+   <h:head>
+        <h:outputStylesheet library="css" name="stylesMenu_1.css"/> 
+        <title>Gestion Commerciale</title>
+   </h:head>
+   
+   <h:body>
+      
+     <p:layout   fullPage="true">
+            
+       <p:layoutUnit position="center"  styleClass="centre" >   
+           <ui:insert name="panneauCentral"  />   
+       </p:layoutUnit>
+           
+       <p:layoutUnit position="north"  styleClass="nord"  > 
+           <ui:insert name="panneauNord" />
+       </p:layoutUnit>
+           
+       <p:layoutUnit position="west"  styleClass="west"> 
+           <ui:include src="/WEB-PAGES/panneaux/ouest_Menu.xhtml"/>
+       </p:layoutUnit>
+           
+       <p:layoutUnit position="east"   styleClass="est" > 
+            <ui:include src="/WEB-PAGES/panneaux/est_vide.xhtml"/> 
+       </p:layoutUnit>
+           
+       <p:layoutUnit position="south">  
+                  <ui:include src="/WEB-PAGES/panneaux/sud_vide.xhtml"/>
+       </p:layoutUnit>
+           
+     </p:layout> 
+           
+   </h:body>
+</html>

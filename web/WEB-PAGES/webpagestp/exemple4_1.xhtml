@@ -1,0 +1,131 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+        <h:outputStylesheet library="css" name="stylesExo2.css"/> 
+        <title>Commandes par clients</title>
+</h:head>
+    
+<h:body>
+        
+   <h:form  id="formulaireExo4" styleClass="formulaire">
+           
+       
+    <p:selectOneListbox  
+              
+        style= "border-radius: 15px;width: 40%; 
+                border: solid deepskyblue;
+                background-color: silver; max-height: 75px;"
+                                  
+        value="#{contExo4.client}" 
+    >
+             
+      <f:selectItems    
+            value="#{contExo4.lesClients}"  
+            var       = "clt"
+            itemLabel = "#{clt.numCli}: #{clt.nomCli} "             
+      />  
+           
+      <p:ajax   event="change"
+                          listener="#{contExo4.traiterSelectionCombo()}"
+                          update="infosclient tableaucommandes"                
+      /> 
+           
+    </p:selectOneListbox> 
+            
+          
+     <p:separator  styleClass="separateur"/>
+                  
+     <p:panel  id="infosclient"
+               header="Informations du client #{contExo4.client.nomCli}" styleClass="infosClient" 
+               toggleable="true"  collapsed="false" 
+               closeSpeed="500"   toggleTitle="Réduire">
+            
+         <p:ajax event="toggle"   update="@all"/>
+             
+         <h:outputText value="#{contExo4.client.nomCli}" />
+            
+         <br/> 
+         <h:outputText value="#{contExo4.client.adrCli}" />
+            
+         <br/> 
+         <h:outputText value="#{contExo4.client.laRegion.nomRegion}" />
+       
+         <p:panelGrid columns="2">
+         
+         <p:outputLabel for="caClient" value="Chiffres d'affaires: "/>
+         <h:outputText  id="caClient"                       
+                             value="#{contExo4.calculCaClient()}"
+         >
+           <f:convertNumber 
+                          type="currency" currencySymbol="€" 
+                          groupingUsed="true"
+                          minFractionDigits="2"  
+           />                     
+        </h:outputText>    
+   
+                             
+        <p:outputLabel  for="soldeClient" value="Solde: "/>
+          <h:outputText   id="soldeClient"                       
+                          value="#{contExo4.calculSoldeClient()}"
+          >
+            <f:convertNumber 
+                          type="currency" currencySymbol="€" 
+                          groupingUsed="true"
+                          minFractionDigits="2" 
+            />
+                        
+         </h:outputText> 
+        
+         </p:panelGrid>
+      </p:panel>
+        
+      <p:separator styleClass="separateur"/> 
+             
+         <p:dataTable id="tableaucommandes"
+                      value="#{contExo4.listeCommandes}" var="cmd" 
+                      styleClass="tableau"
+                      paginator="true" rows="5"
+                      paginatorTemplate="{FirstPageLink} {PreviousPageLink}
+                         {NextPageLink} {PageLinks} {LastPageLink}"   
+                      emptyMessage="#{contExo4.messageTableau}"
+         >
+        
+            <f:facet name="header">  
+                  Liste des Commandes  de #{contExo4.client.nomCli}
+            </f:facet> 
+                
+            <p:column  headerText="numéro"  styleClass="colNumCom">#{cmd.numCom} </p:column>
+                
+            <p:column headerText="Date de commande"  styleClass="colDateCom">
+              <h:outputText value="#{cmd.dateCom}"  >
+                <f:convertDateTime pattern="dd/MM/yyyy"  timeZone="Europe/Paris"/>
+              </h:outputText>        
+            </p:column>
+            
+            <p:column headerText="Montant HT"  styleClass="colMntHT">               
+              <h:outputText value="#{contExo4.montantCommandeHt(cmd)}"  >
+                <f:convertNumber type="currency" currencySymbol="€"
+                                 groupingUsed="true" minFractionDigits="2"/>
+              </h:outputText>             
+             </p:column>
+                
+             <p:column headerText="Montant TTC"  styleClass="colMntTTC">            
+               <h:outputText value="#{contExo4.montantCommandeTTC(cmd)}"  >
+                 <f:convertNumber type="currency" currencySymbol="€"
+                                  groupingUsed="true" minFractionDigits="2"/>
+               </h:outputText>                
+             </p:column>    
+               
+             <p:column headerText="statut" styleClass="colStatutCom"> #{cmd.etatCom}</p:column>
+        
+          </p:dataTable> 
+
+   </h:form>
+   
+    </h:body>
+</html>
+

@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+        <h:outputStylesheet library="css" name="stylesExo2.css"/> 
+        <title>Commandes par clients</title>
+</h:head>
+    
+<h:body>
+        
+  <h:form  id="formulaireExo2" styleClass="formulaire">
+                   
+    <p:panelGrid styleClass="saisieNumcli" columns="3"  >
+     
+        
+      <p:outputLabel value="N° du Client:" for="numcli"  />
+      <p:inputText id="numcli" value="#{contExo2.numcliRecherche}"       
+                   title="Saisir un N° de client" 
+                   styleClass="champSaisieNumCli"
+                   required="true" 
+      >  
+      </p:inputText>   
+      <p:messages id="messages"  showDetail="true"  
+                  closable="true"  showSummary="false"/>                          
+    </p:panelGrid>
+    <p:commandButton    value="OK"  update="@all" 
+                        action="#{contExo2.ecouteurRecherche}"
+              
+                                  
+                        styleClass="bouton"                                    
+     />   
+    
+                 
+     <p:separator  styleClass="separateur"/>
+            
+     <p:panel  header="Informations du client #{contExo2.client.nomCli}" 
+               styleClass="infosClient" 
+               toggleable="true"  collapsed="false" 
+               closeSpeed="500"   toggleTitle="Réduire">
+            
+       <p:ajax event="toggle"   update="@all"/>
+             
+       <h:outputText value="#{contExo2.client.nomCli}" />
+            
+       <br/> 
+       <h:outputText value="#{contExo2.client.adrCli}" />
+            
+       <br/> 
+       <h:outputText value="#{contExo2.client.laRegion.nomRegion}" />
+      
+     <br/> 
+     <h:outputText value="#{contExo2.caAnnuelClient}">
+                  
+        <f:convertNumber type="currency"     currencySymbol="€"
+                         groupingUsed="true" minFractionDigits="2" />
+         
+     </h:outputText>    
+                        
+   </p:panel>
+                  
+  </h:form>
+   
+ </h:body>
+</html>
+

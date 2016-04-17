@@ -1,0 +1,57 @@
+       
+<ui:composition
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets" 
+>
+               
+ <p:panel id="infosclient"
+          
+          styleClass="infosClient" 
+          toggleable="true"   collapsed="false" 
+          closeSpeed="1500"   toggleTitle="Réduire" 
+ >
+      
+     <f:facet name="header" >
+         <h:outputLabel value=" #{controleurExo4.client.nomCli}"  />
+     </f:facet>
+     <p:panelGrid  columns="2"   styleClass="panelGrid" columnClasses="colGrid1, colGrid2"  >
+                   
+                
+         <p:outputLabel value="Adresse"/>
+         <h:outputText value="#{controleurExo4.client.adrCli}  #{controleurExo4.client.laRegion.nomRegion}" />
+                     
+         <p:outputLabel for="caClient" value="Chiffres d'affaires: "/>
+         <h:outputText  id="caClient"                       
+                             value="#{controleurExo4.calculCaClient()}"
+         >
+           <f:convertNumber 
+                          type="currency" currencySymbol="€" 
+                          groupingUsed="true"
+                          minFractionDigits="2"  
+           />                     
+        </h:outputText>    
+   
+                             
+          <p:outputLabel  for="soldeClient" value="Solde: "/>
+          <h:outputText   id="soldeClient"                       
+                          value="#{controleurExo4.calculSoldeClient()}"
+          >
+            <f:convertNumber 
+                          type="currency" currencySymbol="€" 
+                          groupingUsed="true"
+                          minFractionDigits="2" 
+            />
+                        
+          </h:outputText>    
+      
+        
+  </p:panelGrid>    
+     
+  <p:ajax event="toggle"   update="@all"/>   
+ </p:panel>   
+
+</ui:composition>  
+   
